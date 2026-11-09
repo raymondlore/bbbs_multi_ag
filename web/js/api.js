@@ -53,11 +53,7 @@ export function listProjects({ page = 1, q = '', tag = '' } = {}) {
 }
 
 export const listTags = () => request('/tags');
-// 상세 응답은 project 객체 자체 또는 {project: {...}} 어느 쪽이든 project 객체로 돌려준다
-export const getProject = async (id) => {
-  const data = await request(`/projects/${encodeURIComponent(id)}`);
-  return data && data.project ? data.project : data;
-};
+export const getProject = (id) => request(`/projects/${encodeURIComponent(id)}`); // project 객체 자체를 반환
 export const createProject = (formData) => request('/projects', { method: 'POST', body: formData });
 export const updateProject = (id, formData, password) =>
   request(`/projects/${encodeURIComponent(id)}`, { method: 'PUT', body: formData, password });
