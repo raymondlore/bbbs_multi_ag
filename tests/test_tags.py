@@ -1,3 +1,4 @@
+import pytest
 from conftest import API, make_project, pw
 
 
@@ -42,3 +43,8 @@ def test_update_removes_unused_tag(client):
     p, password = make_project(client, tags=["old"])
     client.put(f"{API}/projects/{p['id']}", data=base_form(tags=["new"]), headers=pw(password))
     assert [t["name"] for t in tags(client)] == ["new"]
+
+
+@pytest.fixture(autouse=True)
+def _fast(fast_hash):
+    pass

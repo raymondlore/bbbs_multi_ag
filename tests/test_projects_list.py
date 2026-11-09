@@ -1,3 +1,4 @@
+import pytest
 import math
 from conftest import API, make_project
 
@@ -103,3 +104,8 @@ def test_q_and_tag_combined(client):
     make_project(client, title="챗봇A", tags=["x"])
     make_project(client, title="챗봇B", tags=["y"])
     assert lst(client, q="챗봇", tag="x").json()["total"] == 1
+
+
+@pytest.fixture(autouse=True)
+def _fast(fast_hash):
+    pass

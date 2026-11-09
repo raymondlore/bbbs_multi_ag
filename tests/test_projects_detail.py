@@ -1,3 +1,4 @@
+import pytest
 from conftest import API, image_files, make_project, post_project
 
 
@@ -43,3 +44,8 @@ def test_detail_image_url(client):
     p = client.get(f"{API}/projects/{pid}").json()
     p = p.get("project", p)
     assert p["image_url"].startswith(f"/api/v1/projects/{pid}/image?v=")
+
+
+@pytest.fixture(autouse=True)
+def _fast(fast_hash):
+    pass

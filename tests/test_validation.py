@@ -121,3 +121,8 @@ def test_image_between_2_and_3mb_is_image_too_large(client):
     data = PNG + b"\x00" * (2 * 1024 * 1024 + 1000)
     r = post_project(client, files=image_files(data))
     assert r.status_code == 413 and r.json()["error"]["code"] == "IMAGE_TOO_LARGE"
+
+
+@pytest.fixture(autouse=True)
+def _fast(fast_hash):
+    pass

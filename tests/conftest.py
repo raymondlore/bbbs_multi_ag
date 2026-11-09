@@ -71,3 +71,11 @@ def pw(password):
 
 def image_files(content=PNG, name="shot.png", ctype="image/png"):
     return {"image": (name, content, ctype)}
+
+
+@pytest.fixture
+def fast_hash(monkeypatch):
+    """비밀번호 검증과 무관한 테스트의 속도용: PBKDF2 횟수만 줄인다(저장 문자열에 횟수가 들어 있어 검증은 일관됨)."""
+    import api.security as security
+
+    monkeypatch.setattr(security, "ITERATIONS", 1000)

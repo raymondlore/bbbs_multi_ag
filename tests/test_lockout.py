@@ -117,3 +117,36 @@ def test_xff_used_when_trust_proxy(proxy_client):
     ok = c.put(f"{API}/projects/{p['id']}", data=base_form(),
                headers={**pw(password), "X-Forwarded-For": "3.3.3.3"})
     assert ok.status_code == 200
+
+
+# ---- 검사 순서: 404 -> 401 -> 429 -> 403 ----
+def test_order_404_before_401(client):
+    assert client.delete(f"{API}/projects/9999").status_code == 404
+
+
+def test_order_401_before_429(client):
+    p, _ = make_project(client)
+    lock(client, p["id"])
+    r = client.delete(f"{API}/projects/{p['id']}")  # 헤더 없음
+    assert r.status_code == 401 and r.json()["error"]["code"] == "PASSWORD_REQUIRED"
+    assert client.delete(f"{API}/projects/{p['id']}", headers=pw("")).status_code == 401
+
+
+def test_order_429_before_403(client):
+    p, _ = make_project(client)
+    lock(client, p["id"])
+    assert wrong(client, p["id"]).status_code == 429
+
+
+def test_fifth_failure_is_403_sixth_is_429(client):
+    p, _ = make_project(client)
+    codes = [wrong(client, p["id"]).status_code for _ in range(6)]
+    assert codes == [403] * 5 + [429]
+
+
+def test_xff_first_value_used(proxy_client):
+    c = proxy_client
+    p, _ = make_project(c)
+    lock(c, p["id"], {"X-Forwarded-For": "1.1.1.1, 10.0.0.1"})
+    assert wrong(c, p["id"], {"X-Forwarded-For": "1.1.1.1, 10.9.9.9"}).status_code == 429  # 맨 앞 값이 같음
+    assert wrong(c, p["id"], {"X-Forwarded-For": "2.2.2.2, 10.0.0.1"}).status_code == 403  # 맨 앞 값이 다름

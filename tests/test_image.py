@@ -83,3 +83,8 @@ def test_server_generated_filename(client, data_dir):
     assert len(files) == 1
     assert "evil" not in files[0].name and files[0].suffix == ".png"
     assert len(files[0].stem) == 32
+
+
+@pytest.fixture(autouse=True)
+def _fast(fast_hash):
+    pass
