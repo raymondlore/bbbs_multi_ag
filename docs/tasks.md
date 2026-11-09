@@ -14,11 +14,11 @@ tester는 backend보다 먼저 테스트를 쓰므로 아래 이름을 그대로
 - 커밋: `[역할] 요약`, 자기 폴더 파일만 `git add`, push 금지, `git push --force`·`git reset --hard` 금지
 
 ## backend (`api/`만)
-- [ ] B1 DB 스키마와 연결 (`api/db.py`): 테이블 3개, 인덱스, 연결마다 PRAGMA, 초기화 함수
-- [ ] B2 비밀번호 (`api/security.py`): 12자리 발급(혼동 문자 제외), PBKDF2 해시·검증(`hmac.compare_digest`)
-- [ ] B3 락아웃과 클라이언트 IP (`api/lockout.py`): (과제 id, IP) 5회/15분, 잠금 우선, `reset_lockout()`, `TRUST_PROXY`
-- [ ] B4 입력 검증·정규화 (`api/validation.py`): trim, 길이, URL 스킴, 태그 규칙, URL 최소 1개
-- [ ] B5 이미지 저장·삭제 (`api/storage.py`): 확장자+매직 바이트, 2MB 스트림 중단, uuid 파일명, 저장 순서
+- [x] B1 DB 스키마와 연결 (`api/db.py`): 테이블 3개, 인덱스, 연결마다 PRAGMA, 초기화 함수
+- [x] B2 비밀번호 (`api/security.py`): 12자리 발급(혼동 문자 제외), PBKDF2 해시·검증(`hmac.compare_digest`)
+- [x] B3 락아웃과 클라이언트 IP (`api/lockout.py`): (과제 id, IP) 5회/15분, 잠금 우선, `reset_lockout()`, `TRUST_PROXY`
+- [x] B4 입력 검증·정규화 (`api/validation.py`): trim, 길이, URL 스킴, 태그 규칙, URL 최소 1개
+- [x] B5 이미지 저장·삭제 (`api/storage.py`): 확장자+매직 바이트, 2MB 스트림 중단, uuid 파일명, 저장 순서
 - [ ] B6 앱 골격 (`api/main.py`): 전역 오류 핸들러(422→VALIDATION_ERROR 등), 보안 헤더, `/docs` 비활성, 본문 3MB `Content-Length` 검사(413 REQUEST_TOO_LARGE), StaticFiles 마운트 순서
 - [ ] B7 `POST /api/v1/projects` (등록, `edit_password` 1회 반환, `Cache-Control: no-store`)
 - [ ] B8 `GET /api/v1/projects` (목록: 페이지네이션, `q`, `tag`, 정렬, summary 150자)
