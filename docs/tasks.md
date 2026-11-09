@@ -27,7 +27,7 @@ tester는 backend보다 먼저 테스트를 쓰므로 아래 이름을 그대로
 - [x] B11 `DELETE /api/v1/projects/{id}` (204, 이미지 파일 삭제, 고아 태그 정리)
 - [x] B12 `GET /api/v1/projects/{id}/image`
 - [x] B13 `GET /api/v1/tags`
-- [ ] B14 `uvicorn api.main:app --workers 1` 실행 확인, `curl`로 등록→조회 스모크 테스트, 결과 보고
+- [x] B14 `uvicorn api.main:app --workers 1` 실행 확인, `curl`로 등록→조회 스모크 테스트, 결과 보고
 
 ## frontend (`web/`만)
 - [ ] F1 앱 골격: `web/index.html`, 외부 CSS(`web/css/app.css`, 인라인 style·`<style>` 금지), ES Modules 구조, 해시 라우터, API 클라이언트(`web/js/api.js`), 공통 오류·토스트
