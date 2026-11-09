@@ -19,14 +19,14 @@ tester는 backend보다 먼저 테스트를 쓰므로 아래 이름을 그대로
 - [x] B3 락아웃과 클라이언트 IP (`api/lockout.py`): (과제 id, IP) 5회/15분, 잠금 우선, `reset_lockout()`, `TRUST_PROXY`
 - [x] B4 입력 검증·정규화 (`api/validation.py`): trim, 길이, URL 스킴, 태그 규칙, URL 최소 1개
 - [x] B5 이미지 저장·삭제 (`api/storage.py`): 확장자+매직 바이트, 2MB 스트림 중단, uuid 파일명, 저장 순서
-- [ ] B6 앱 골격 (`api/main.py`): 전역 오류 핸들러(422→VALIDATION_ERROR 등), 보안 헤더, `/docs` 비활성, 본문 3MB `Content-Length` 검사(413 REQUEST_TOO_LARGE), StaticFiles 마운트 순서
-- [ ] B7 `POST /api/v1/projects` (등록, `edit_password` 1회 반환, `Cache-Control: no-store`)
-- [ ] B8 `GET /api/v1/projects` (목록: 페이지네이션, `q`, `tag`, 정렬, summary 150자)
-- [ ] B9 `GET /api/v1/projects/{id}` (상세)
-- [ ] B10 `PUT /api/v1/projects/{id}` (전체 교체, `remove_image`, image+remove_image 충돌 422)
-- [ ] B11 `DELETE /api/v1/projects/{id}` (204, 이미지 파일 삭제, 고아 태그 정리)
-- [ ] B12 `GET /api/v1/projects/{id}/image`
-- [ ] B13 `GET /api/v1/tags`
+- [x] B6 앱 골격 (`api/main.py`): 전역 오류 핸들러(422→VALIDATION_ERROR 등), 보안 헤더, `/docs` 비활성, 본문 3MB `Content-Length` 검사(413 REQUEST_TOO_LARGE), StaticFiles 마운트 순서
+- [x] B7 `POST /api/v1/projects` (등록, `edit_password` 1회 반환, `Cache-Control: no-store`)
+- [x] B8 `GET /api/v1/projects` (목록: 페이지네이션, `q`, `tag`, 정렬, summary 150자)
+- [x] B9 `GET /api/v1/projects/{id}` (상세)
+- [x] B10 `PUT /api/v1/projects/{id}` (전체 교체, `remove_image`, image+remove_image 충돌 422)
+- [x] B11 `DELETE /api/v1/projects/{id}` (204, 이미지 파일 삭제, 고아 태그 정리)
+- [x] B12 `GET /api/v1/projects/{id}/image`
+- [x] B13 `GET /api/v1/tags`
 - [ ] B14 `uvicorn api.main:app --workers 1` 실행 확인, `curl`로 등록→조회 스모크 테스트, 결과 보고
 
 ## frontend (`web/`만)
