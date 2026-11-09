@@ -6,8 +6,9 @@ def test_detail_fields(client):
     created, _ = make_project(client, tags=["a", "b"], repo_url="https://g.local/x")
     r = client.get(f"{API}/projects/{created['id']}")
     assert r.status_code == 200
-    assert r.json() == {"project": created} or r.json() == created
-    p = r.json().get("project", r.json())
+    p = r.json()
+    assert "project" not in p  # 상세는 감싸지 않은 project 객체
+    assert p == created
     assert set(p) == {"id", "title", "description", "deploy_url", "repo_url", "author",
                       "tags", "image_url", "created_at", "updated_at"}
 
@@ -42,7 +43,6 @@ def test_detail_image_url(client):
     r = post_project(client, files=image_files())
     pid = r.json()["project"]["id"]
     p = client.get(f"{API}/projects/{pid}").json()
-    p = p.get("project", p)
     assert p["image_url"].startswith(f"/api/v1/projects/{pid}/image?v=")
 
 

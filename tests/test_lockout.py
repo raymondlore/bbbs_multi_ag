@@ -86,8 +86,11 @@ def test_missing_id_is_404_not_counted(client):
 
 def test_missing_password_header_401(client):
     p, _ = make_project(client)
-    for _ in range(3):
+    for _ in range(10):
         assert client.delete(f"{API}/projects/{p['id']}").status_code == 401
+        assert client.delete(f"{API}/projects/{p['id']}", headers=pw("")).status_code == 401
+    # 401은 실패 횟수에 포함되지 않으므로 아직 잠기지 않았고 403이 5번 나온 뒤에야 잠김
+    assert [wrong(client, p["id"]).status_code for _ in range(6)] == [403] * 5 + [429]
 
 
 def test_reset_lockout_function(client):

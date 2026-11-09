@@ -87,7 +87,6 @@ def test_sql_injection_in_query_params(client, s):
 def test_sql_injection_stored_literally(client, s):
     p, password = make_project(client, title=s[:100], description=s, author=s[:30])
     got = client.get(f"{API}/projects/{p['id']}").json()
-    got = got.get("project", got)
     assert got["title"] == s[:100] and got["description"] == s
     assert client.get(f"{API}/projects").json()["total"] == 1
 
@@ -108,7 +107,7 @@ def test_html_stored_as_text_not_altered(client):
     xss = "<script>alert(1)</script>"
     p, _ = make_project(client, title=xss, description=xss)
     got = client.get(f"{API}/projects/{p['id']}").json()
-    assert got.get("project", got)["title"] == xss  # 출력 이스케이프는 클라이언트 책임(textContent)
+    assert got["title"] == xss  # 출력 이스케이프는 클라이언트 책임(textContent)
 
 
 def test_no_hash_or_password_in_any_response(client):

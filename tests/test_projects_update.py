@@ -19,7 +19,6 @@ def test_full_replace(client):
     assert q["tags"] == ["c"]
     assert q["created_at"] == p["created_at"]
     got = client.get(f"{API}/projects/{p['id']}").json()
-    got = got.get("project", got)
     assert got["title"] == "새 제목" and got["tags"] == ["c"]
 
 
@@ -59,7 +58,7 @@ def test_image_and_remove_image_conflict(client):
     img = client.get(f"{API}/projects/{p['id']}/image")
     assert img.status_code == 200 and img.content == PNG  # 이미지 그대로
     got = client.get(f"{API}/projects/{p['id']}").json()
-    assert got.get("project", got)["title"] == p["title"]
+    assert got["title"] == p["title"]
 
 
 def test_missing_password_401(client):
@@ -74,7 +73,7 @@ def test_wrong_password_403(client):
     r = put(client, p["id"], "wrongpassword", title="해킹")
     assert r.status_code == 403 and r.json()["error"]["code"] == "PASSWORD_MISMATCH"
     got = client.get(f"{API}/projects/{p['id']}").json()
-    assert got.get("project", got)["title"] == p["title"]
+    assert got["title"] == p["title"]
 
 
 def test_password_in_query_not_accepted(client):
