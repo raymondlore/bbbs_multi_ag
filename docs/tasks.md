@@ -53,4 +53,4 @@ tester는 backend보다 먼저 테스트를 쓰므로 아래 이름을 그대로
 - [x] T10 `tests/test_lockout.py`: 5회 실패 후 429+`Retry-After`, 잠금 중 정답도 429, `TRUST_PROXY` 동작
 - [x] T11 `tests/test_security.py`: 오류 형식, 보안 헤더, `/docs` 비활성, SQL 인젝션 문자열, 응답에 해시 미노출
 - [x] T12 E2E 수동 시나리오 문서 `tests/e2e/` (목록·검색·필터 / 등록·비밀번호 안내 / 상세 / 수정·삭제 / 오류·잠금 각 1개 파일)
-- [ ] T13 backend 완료 후 `pytest -q` 전체 실행, 실패 분석(api.md 기준으로 backend 버그인지 테스트 오류인지) 보고
+- [x] T13 backend 완료 후 `pytest -q` 전체 실행, 실패 분석(api.md 기준으로 backend 버그인지 테스트 오류인지) 보고
