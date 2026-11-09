@@ -30,27 +30,27 @@ tester는 backend보다 먼저 테스트를 쓰므로 아래 이름을 그대로
 - [x] B14 `uvicorn api.main:app --workers 1` 실행 확인, `curl`로 등록→조회 스모크 테스트, 결과 보고
 
 ## frontend (`web/`만)
-- [ ] F1 앱 골격: `web/index.html`, 외부 CSS(`web/css/app.css`, 인라인 style·`<style>` 금지), ES Modules 구조, 해시 라우터, API 클라이언트(`web/js/api.js`), 공통 오류·토스트
-- [ ] F2 목록 화면: 카드 목록, 썸네일(없으면 SVG 대체), 로딩·빈·오류 상태
-- [ ] F3 목록의 검색·태그 칩 필터(단일)·페이지네이션, URL 상태 보존
-- [ ] F4 등록 폼: 필드, 태그 칩 입력, 스크린샷 미리보기, 클라이언트 검증(편의용), 서버 오류 표시
-- [ ] F5 비밀번호 안내 화면: 1회 표시, 복사 폴백, 보관 확인 체크
-- [ ] F6 상세 화면: 전체 정보, 스크린샷, 링크 http/https만, 404 상태
-- [ ] F7 수정 화면: 등록 폼 재사용, 프리필, 이미지 유지/교체/제거, 비밀번호 입력, 401/403/429 문구
-- [ ] F8 삭제 다이얼로그: 비밀번호 입력, 403 재입력, 성공 시 목록 이동
-- [ ] F9 반응형(모바일·태블릿)과 키보드 포커스 점검, innerHTML·인라인 스타일·외부 URL 없음 확인
+- [x] F1 앱 골격: `web/index.html`, 외부 CSS(`web/css/app.css`, 인라인 style·`<style>` 금지), ES Modules 구조, 해시 라우터, API 클라이언트(`web/js/api.js`), 공통 오류·토스트
+- [x] F2 목록 화면: 카드 목록, 썸네일(없으면 SVG 대체), 로딩·빈·오류 상태
+- [x] F3 목록의 검색·태그 칩 필터(단일)·페이지네이션, URL 상태 보존
+- [x] F4 등록 폼: 필드, 태그 칩 입력, 스크린샷 미리보기, 클라이언트 검증(편의용), 서버 오류 표시
+- [x] F5 비밀번호 안내 화면: 1회 표시, 복사 폴백, 보관 확인 체크
+- [x] F6 상세 화면: 전체 정보, 스크린샷, 링크 http/https만, 404 상태
+- [x] F7 수정 화면: 등록 폼 재사용, 프리필, 이미지 유지/교체/제거, 비밀번호 입력, 401/403/429 문구
+- [x] F8 삭제 다이얼로그: 비밀번호 입력, 403 재입력, 성공 시 목록 이동
+- [x] F9 반응형(모바일·태블릿)과 키보드 포커스 점검, innerHTML·인라인 스타일·외부 URL 없음 확인
 
 ## tester (`tests/`만)
-- [ ] T1 `tests/conftest.py`: 임시 `DATA_DIR`, 앱 import(`sys.path` 처리 포함), TestClient(httpx), 락아웃 초기화 fixture, 과제 생성 헬퍼
-- [ ] T2 `tests/test_projects_create.py`: 정상 201, `edit_password` 형식, 이미지 포함 등록
-- [ ] T3 `tests/test_projects_list.py`: 페이지네이션, 정렬, `q`, `tag`, 범위 밖 page
-- [ ] T4 `tests/test_projects_detail.py`: 상세 필드, 404, 비밀번호 필드 미노출
-- [ ] T5 `tests/test_projects_update.py`: 전체 교체, 이미지 교체·제거, image+remove_image 422, 401/403
-- [ ] T6 `tests/test_projects_delete.py`: 204, 이미지 삭제, 401/403/404
-- [ ] T7 `tests/test_image.py`: 형식·매직 바이트·2MB(413 IMAGE_TOO_LARGE, 415), 이미지 응답 헤더
-- [ ] T8 `tests/test_tags.py`: 사용 중 태그만, count, 정렬
-- [ ] T9 `tests/test_validation.py`: trim·빈 문자열, 길이, URL 스킴, URL 최소 1개, 태그 규칙, 본문 3MB(413 REQUEST_TOO_LARGE)
-- [ ] T10 `tests/test_lockout.py`: 5회 실패 후 429+`Retry-After`, 잠금 중 정답도 429, `TRUST_PROXY` 동작
-- [ ] T11 `tests/test_security.py`: 오류 형식, 보안 헤더, `/docs` 비활성, SQL 인젝션 문자열, 응답에 해시 미노출
-- [ ] T12 E2E 수동 시나리오 문서 `tests/e2e/` (목록·검색·필터 / 등록·비밀번호 안내 / 상세 / 수정·삭제 / 오류·잠금 각 1개 파일)
+- [x] T1 `tests/conftest.py`: 임시 `DATA_DIR`, 앱 import(`sys.path` 처리 포함), TestClient(httpx), 락아웃 초기화 fixture, 과제 생성 헬퍼
+- [x] T2 `tests/test_projects_create.py`: 정상 201, `edit_password` 형식, 이미지 포함 등록
+- [x] T3 `tests/test_projects_list.py`: 페이지네이션, 정렬, `q`, `tag`, 범위 밖 page
+- [x] T4 `tests/test_projects_detail.py`: 상세 필드, 404, 비밀번호 필드 미노출
+- [x] T5 `tests/test_projects_update.py`: 전체 교체, 이미지 교체·제거, image+remove_image 422, 401/403
+- [x] T6 `tests/test_projects_delete.py`: 204, 이미지 삭제, 401/403/404
+- [x] T7 `tests/test_image.py`: 형식·매직 바이트·2MB(413 IMAGE_TOO_LARGE, 415), 이미지 응답 헤더
+- [x] T8 `tests/test_tags.py`: 사용 중 태그만, count, 정렬
+- [x] T9 `tests/test_validation.py`: trim·빈 문자열, 길이, URL 스킴, URL 최소 1개, 태그 규칙, 본문 3MB(413 REQUEST_TOO_LARGE)
+- [x] T10 `tests/test_lockout.py`: 5회 실패 후 429+`Retry-After`, 잠금 중 정답도 429, `TRUST_PROXY` 동작
+- [x] T11 `tests/test_security.py`: 오류 형식, 보안 헤더, `/docs` 비활성, SQL 인젝션 문자열, 응답에 해시 미노출
+- [x] T12 E2E 수동 시나리오 문서 `tests/e2e/` (목록·검색·필터 / 등록·비밀번호 안내 / 상세 / 수정·삭제 / 오류·잠금 각 1개 파일)
 - [ ] T13 backend 완료 후 `pytest -q` 전체 실행, 실패 분석(api.md 기준으로 backend 버그인지 테스트 오류인지) 보고
