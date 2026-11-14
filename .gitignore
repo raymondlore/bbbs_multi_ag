@@ -1,2 +1,7 @@
-_site/
+data/
+data_*/
 __pycache__/
+.pytest_cache/
+_site/
+.venv/
+wheelhouse/
